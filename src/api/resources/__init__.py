@@ -1,2 +1,2 @@
 from .image import *
-from .comtepition import *
+from .competition import *
