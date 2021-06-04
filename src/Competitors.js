@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { useParams, useHistory } from 'react-router-dom'
 
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import  { getCompetitors } from './store/actions/competitions'
 
 
 const Competitors = () => {
 
     const [ readyToRender, setReadyToRender ] = useState(false)
+
+    const { competitorsLoading, competitorsError, competitors} = useSelector(state => state.competitors)
 
     const { pokemon, id } = useParams()
 
@@ -25,7 +27,7 @@ const Competitors = () => {
         history.push(`/new/${id}`)
     }
 
-    if (!readyToRender) return null
+    if (!readyToRender || competitorsLoading || competitorsError) return null
 
     return (
         <div className="container">

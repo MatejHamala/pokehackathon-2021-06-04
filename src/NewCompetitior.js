@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 
 import { useDispatch } from 'react-redux'
-import  { newCompetitor } from './store/actions/competitions'
+import  { postCompetitor } from './store/actions/competitions'
 
 
 const NewCompetitior = () => {
@@ -30,7 +30,6 @@ const NewCompetitior = () => {
         dispatch(postCompetitor(id, form, history))
     }
     
-
     return (
         <div className="container">
         <div className="container-title">New competitior</div>
