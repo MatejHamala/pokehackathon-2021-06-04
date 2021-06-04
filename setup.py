@@ -1,11 +1,9 @@
-import uuid
-
 from pip._internal.req import parse_requirements
 from setuptools import setup, find_packages
 
 
 def requirements(path):
-    items = parse_requirements(path, session=uuid.uuid1())
+    items = parse_requirements(path, session=False)
     return [r.requirement for r in items]
 
 setup(
