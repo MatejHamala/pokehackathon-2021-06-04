@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-function App() {
+import { Route, Switch, Redirect } from 'react-router-dom'
+
+import Competitions from './Competitions'
+import Competitors from './Competitors'
+import NewCompetitor from './NewCompetitior'
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Switch>
+        <Route exact path="/">
+          <Competitions />
+        </Route>
+        <Route exact path="/competitors/:pokemon/:id">
+          <Competitors />
+        </Route>
+        <Route exact path="/new/:id">
+          <NewCompetitor />
+        </Route>
+        
+        <Redirect to="/"></Redirect>
+      </Switch>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
