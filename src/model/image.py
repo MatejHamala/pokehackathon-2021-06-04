@@ -11,4 +11,4 @@ class Image(Base):
 
     owner = Column(String)
     url = Column(String)
-    score = Column(Numeric)
+    score = Column(Numeric, default=0)
