@@ -10,3 +10,4 @@ pip~=20.1.1
 setuptools~=47.1.1
 flask-restful==0.3.8
 werkzeug==0.16.1
+Flask-Cors==3.0.10

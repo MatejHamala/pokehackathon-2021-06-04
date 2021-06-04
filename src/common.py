@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_restful import Api
 
 from sqlalchemy import create_engine
@@ -16,8 +17,8 @@ def session_factory():
     Base.metadata.create_all(engine)
     return _SessionFactory()
 
-
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 
 

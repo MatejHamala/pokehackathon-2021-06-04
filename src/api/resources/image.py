@@ -29,6 +29,7 @@ class ImageResource(Resource):
         session = session_factory()
 
         competition = session.query(Competition).get(competition_id)
+        print(dir(request))
         kwargs = {
             'competition_id': competition_id,
             'url': request.json['url'],

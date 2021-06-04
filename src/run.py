@@ -2,6 +2,14 @@ from src.common import app, session_factory
 from src.config import POKEMONS
 from src.model import Competition
 
+def test():
+    with app.test_client() as c:
+        r = c.post('/competition/1/image', json={
+    "owner": "abc",
+    "url": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png"
+})
+        return r
+
 
 def run():
     session = session_factory()
@@ -10,3 +18,7 @@ def run():
         session.add(competition)
     session.commit()
     app.run()
+
+#
+# run()
+r = test()
