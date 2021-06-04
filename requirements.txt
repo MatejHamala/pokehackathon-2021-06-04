@@ -11,3 +11,4 @@ setuptools~=47.1.1
 flask-restful==0.3.8
 werkzeug==0.16.1
 Flask-Cors==3.0.10
+tensorflow==2.5.0
