@@ -17,7 +17,7 @@ const App = () => {
         <Route exact path="/competitors/:pokemon/:id">
           <Competitors />
         </Route>
-        <Route exact path="/new/:id">
+        <Route exact path="/new/:pokemon/:id">
           <NewCompetitor />
         </Route>
         

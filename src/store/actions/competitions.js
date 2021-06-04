@@ -20,8 +20,13 @@ export const getCompetitions = () => async(dispatch) => {
     dispatch({type: GETING_COMPETITIONS})
 
     try {
-        const response = await api.get("/competitions")
-
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title: 'React POST Request Example' })
+        };
+        const response = await api.get("/competition")
+        console.log(response.data)
         dispatch({type: GET_COMPETITIONS_SUCCESS, payload: response.data })
         
     } catch(error) {
@@ -29,12 +34,12 @@ export const getCompetitions = () => async(dispatch) => {
     }
 }
 
-export const getCompetitors = () => async(dispatch) => {
+export const getCompetitors = (id) => async(dispatch) => {
 
     dispatch({type: GETING_COMPETITORS})
 
     try {
-        const response = await api.get("/competitions")
+        const response = await api.get(`/competition/${id}/image`)
 
         dispatch({type: GET_COMPETITORS_SUCCESS, payload: response.data })
         
@@ -43,15 +48,18 @@ export const getCompetitors = () => async(dispatch) => {
     }
 }
 
-export const postCompetitor = (id, form, history) => async(dispatch) => {
+export const postCompetitor = (id, pokemon, form, history) => async(dispatch) => {
 
     dispatch({type: POSTING_COMPETITOR})
 
     try {
-        const response = await api.get("/competitions")
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+        const response = await api.post(`/competition/${id}/image`, form, {headers})
 
         dispatch({type: POSTED_COMPETITOR, payload: response.data })
-        
+        history.push(`/competitors/${pokemon}/${id}`)
     } catch(error) {
         dispatch({type: POSTED_COMPETITOR, payload: "Something wrong" })
     }

@@ -19,12 +19,12 @@ const Competitors = () => {
     const dispatch = useDispatch()
     
     useEffect(() => {
-        dispatch(getCompetitors())
+        dispatch(getCompetitors(id))
         setReadyToRender(true)
     }, [])
 
     const handleNewCompetitor = () => {
-        history.push(`/new/${id}`)
+        history.push(`/new/${pokemon}/${id}`)
     }
 
     if (!readyToRender || competitorsLoading || competitorsError) return null

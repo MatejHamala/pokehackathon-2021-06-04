@@ -8,7 +8,7 @@ import  { postCompetitor } from './store/actions/competitions'
 
 const NewCompetitior = () => {
 
-    const { id } = useParams()
+    const { pokemon ,id } = useParams()
 
     const history = useHistory()
 
@@ -27,7 +27,7 @@ const NewCompetitior = () => {
 
     const onSubmitForm = () => {
         const form = {owner, url}
-        dispatch(postCompetitor(id, form, history))
+        dispatch(postCompetitor(id, pokemon, form, history))
     }
     
     return (
