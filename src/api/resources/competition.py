@@ -1,7 +1,5 @@
-from datetime import date
-
 from flask_restful import Resource, fields, marshal_with
-from flask import request, jsonify
+from flask import request
 
 from src.common import api, session_factory
 from src.model import Competition
@@ -23,11 +21,12 @@ class CompetitionResource(Resource):
 
     @marshal_with(fields)
     def post(self):
+        session = session_factory()
+
         kwargs = {
             'pokemon': request.json['pokemon'],
             'image_url': request.json['image_url'],
         }
-        session = session_factory()
         competition = Competition(**kwargs)
         session.add(competition)
         session.commit()

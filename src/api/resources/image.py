@@ -1,8 +1,9 @@
 from flask_restful import Resource, fields, marshal_with
 from flask import request
 
-from src.common import api, app, session_factory
-from src.model import Image
+from src.common import api, session_factory
+from src.model import Image, Competition
+from src.pokedex.classify import get_score
 
 fields = {
     'id': fields.String,
@@ -25,16 +26,20 @@ class ImageResource(Resource):
 
     @marshal_with(fields)
     def post(self, competition_id):
+        session = session_factory()
+
+        competition = session.query(Competition).get(competition_id)
         kwargs = {
             'competition_id': competition_id,
             'url': request.json['url'],
             'owner': request.json['owner'],
+            'score': str(get_score(request.json['url'], competition.pokemon))
         }
-        session = session_factory()
         image = Image(**kwargs)
         session.add(image)
         session.commit()
 
         return image
+
 
 api.add_resource(ImageResource, '/competition/<int:competition_id>/image')

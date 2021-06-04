@@ -1,5 +1,5 @@
 from src.common import Base
-from sqlalchemy import Column, String, Integer, Numeric, ForeignKey
+from sqlalchemy import Column, String, Integer, ForeignKey, DECIMAL
 
 
 class Image(Base):
@@ -11,4 +11,4 @@ class Image(Base):
 
     owner = Column(String)
     url = Column(String)
-    score = Column(Numeric, default=0)
+    score = Column(String, default=0)
